@@ -1,4 +1,4 @@
-package edu.augustana.csc305.labs;
+package  edu.augustana.csc305.labs;
 
 
 import static org.junit.Assert.*;

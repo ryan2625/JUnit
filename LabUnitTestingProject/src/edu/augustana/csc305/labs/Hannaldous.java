@@ -22,39 +22,69 @@ package edu.augustana.csc305.labs;
 
 public class Hannaldous {
 	
-	// method one to do the thing for Monday's meeting 
-	public static int howbad(int n, String[] x, double roXORZ) {
-		int j = x.length - 1;
-		int ret = 0;
-		n = n; // n = ? 
-		for (int i = 0; i < x.length; i = i + 1) 
-		{
-		if (x[j].length() < n || Help(x[j]).equals("y"))
-			ret++;
-	j--;  }
-		return ret;
+	
+	// Method one checks to see if there are consecutive repeated 
+	// characters in the password and checks the password length.
+	// If the password is too short or it has consecutive repeated
+	// characters, the password is too weak.
+	
+	public static String passwordStrengthEvaluator(int passwordToEvaluate, String[] passwords) {
+		
+		int passwordLength = passwords[passwordToEvaluate].length();
+		if (passwordLength <= 8) {
+			return "Password is not long enough!";
+		}
+		
+		String passwordString = passwords[passwordToEvaluate];
+		for (int i = 0; i < passwordLength - 1; i++) {
+			if (passwordString.charAt(i) == passwordString.charAt(i+1)) {
+				return "Password is too weak. Don't use consecutive "
+						+ "characters!";
+			}
+			if ((passwordStrengthEvaluator2(passwordString) != true)) {
+				return "You need at least one upper case, one lower case, "
+						+ "and one digit in your password!";
+			}
+		}
+		return "Password is strong enough!";
 						}
-	// method two helps, and i wrote it at 11:58 p.m. on sunday... 
-	// couldn't find it on stack overflow, so I rolled my pwn. 
-	static String Help(String MAYBE) 
-	{		
-		int yeah = -1;
-		while (yeah++ < MAYBE.length() - 1) {
-			char izard /*PoKeMoN babee*/ = MAYBE.charAt(yeah); 
-			
-			if (! (izard >= 'a' && izard <='z'|| izard >='A' && izard <= 'Z')) return "n"; }
-		return "y";
+	// Method two checks to see if the password contains an 
+	// upper case letter, a lower case letter, and a number.
+	
+	static boolean passwordStrengthEvaluator2(String passwordString){
+		int complexityRating = 3;
+		int currentComplexityRating = 0;
+		int passwordLength = passwordString.length();
+		
+		for (int i = 0; i < passwordLength; i++) {
+			char ch = passwordString.charAt(i);
+			if (Character.isUpperCase(ch)) {
+				currentComplexityRating++;			
+			}
+			if (Character.isLowerCase(ch)) {
+				currentComplexityRating++;			
+			}
+			if (Character.isDigit(ch)) {
+				currentComplexityRating++;			
+			}
+		}
+		if (currentComplexityRating == complexityRating) {
+			return true;
+		}
+		return false;
+
 	}
+		
+		
 	
 	
 	public static void main(String[] args) {
-		
-		System.out.println(Help("bigmoose$"));
-		System.out.println(Help("emusareawesome"));
-		System.out.println(Help("17"));
-
 		String[] passwords = new String[] { "bigmoose$", "emusareawesome", "123goodbye", "ok&y", "17", "cat" };
-		System.out.println(howbad(8,passwords, 0.0));
+		passwordStrengthEvaluator(1, passwords);
+		passwordStrengthEvaluator(2, passwords);
+		passwordStrengthEvaluator(3, passwords);
+		passwordStrengthEvaluator(4, passwords);
+		
 	}
 
 }

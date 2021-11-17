@@ -8,13 +8,25 @@ public class NumberUtils {
 	 * @param c - a number to compare
 	 * @return the largest of the three numbers
 	 */                            //3,1,2
+
 	public static int maxOfThree(int a, int b, int c) {
 		if (a > b) {
-			return c > a ? c : a;
-		} else {
-			return c > b ? c : b;
+			if (a > c) {
+				return a;
+			} else {
+				return c;
+			}
+		} 
+		if (c > b) {
+			if (c > a) {
+				return c;
+			} else {
+				return a;
+				}
+			}
+		return b;
 		}
-	}
+	
 	
 	public static void main(String[] args) {
 		// NOTE: There's a bug in maxOfThree above... can we find it? 
@@ -28,6 +40,11 @@ public class NumberUtils {
 		System.out.println(maxOfThree(2,3,1) + " should be 3");
 		System.out.println(maxOfThree(3,1,2) + " should be 3");
 		System.out.println(maxOfThree(3,2,1) + " should be 3");
+		System.out.println(maxOfThree(999,10,1) + " should be 999");
+		System.out.println(maxOfThree(-99,-98,-97) + " should be -97");
+		System.out.println(maxOfThree(-100,0,0) + " should be 0");
+		System.out.println(maxOfThree(0,0,0) + " should be 0");
+		System.out.println(maxOfThree(-99,99,1) + " should be 99");
 		
 	}
 

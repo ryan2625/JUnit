@@ -30,6 +30,22 @@ class NumberUtilsTest {
 	void testNegatives() {
 		assertEquals(-12, maxOfThree(-300,-12,-75));
 	}
-
+	@Test
+	void testingNegativesAndPositives() {
+		assertEquals(75, maxOfThree(-30,-12,75));
+		assertEquals(999, maxOfThree(999,-12,-56));
+	}
+	
+	@Test
+	void testZeros() {
+		assertEquals(12, maxOfThree(0,12,0));
+		assertEquals(0, maxOfThree(-2, -55 ,0));
+	}
+	
+	@Test
+	void testOperator() {
+		assertEquals(12, maxOfThree(0+11,12,3*3));
+	}
+	
 
 }
